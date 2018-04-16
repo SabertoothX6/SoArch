@@ -9,9 +9,9 @@ angular.
 		'</div>'+
 		'<div>'+
 			'<form class="">'+
-			'<p>Länge:<br/><input type="text" style="width:100%" ng-model="length">'+
-			'<p>Breite:<br/><input type="text" style="width:100%" ng-model="width">'+
-			'<p>Tiefe:<br/><input type="text" style="width:100%" ng-model="depth">'+
+			'<p>Länge:<br/><input type="text" style="width:100%" ng-model="$ctrl.parcel.size.length">'+
+			'<p>Breite:<br/><input type="text" style="width:100%" ng-model="$ctrl.parcel.size.width">'+
+			'<p>Tiefe:<br/><input type="text" style="width:100%" ng-model="$ctrl.parcel.size.depth">'+
 			'<br/><p class="w3-teal" ng-click="$ctrl.calcSize($ctrl.size)" style="cursor: pointer;">Größe berechnen</p> <p>Paketgröße: {{size}}'+
 			'</form>'+
 		'</div>'+ 
@@ -21,10 +21,21 @@ angular.
     controller: function ParcelPriceController($rootScope, $http) {
     	
     	
-    	this.parcelsize = {
-    		parcelsize : this.size
+    	this.parcel = {
+    		size:{length: '0',width:'0',depth:'0',cat:'S'}
     	};
-      
+    	$rootSCope.parcelsize = this.parcel;
+    	this.calcSize= function($parcel)
+    	{
+    		var parameter = JSON.stringify($parcel.size);
+    		var url = "http://localhost:8443/parcel/size";
+    		var size = '';
+    		$http.post(url, parameter).then(function(data, status, headers, config) 
+    		{
+	          ret_data = angular.fromJson(data);
+	          $parcel.size.category=ret_data['data']['size'];
+    		});
+    	}
       
  
     }
