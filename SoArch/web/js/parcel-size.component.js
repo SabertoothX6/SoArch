@@ -9,10 +9,10 @@ angular.
 		'</div>'+
 		'<div>'+
 			'<form class="">'+
-			'<p>Länge:<br/><input type="text" style="width:100%" ng-model="$ctrl.parcel.size.length">'+
-			'<p>Breite:<br/><input type="text" style="width:100%" ng-model="$ctrl.parcel.size.width">'+
-			'<p>Tiefe:<br/><input type="text" style="width:100%" ng-model="$ctrl.parcel.size.depth">'+
-			'<br/><p class="w3-teal" ng-click="$ctrl.calcSize($ctrl.parcel.size.cat)" style="cursor: pointer;">Größe berechnen</p> <p>Paketgröße: {{size}}'+
+			'<p>Länge:<br/><input class="w3-input" type="text" style="width:100%" ng-model="$ctrl.parcel.size.length">'+
+			'<p>Breite:<br/><input class="w3-input" type="text" style="width:100%" ng-model="$ctrl.parcel.size.width">'+
+			'<p>Tiefe:<br/><input class="w3-input" type="text" style="width:100%" ng-model="$ctrl.parcel.size.depth">'+
+			'<br/><p class="w3-teal w3-button" ng-click="$ctrl.calcSize($ctrl.parcel)" style="cursor: pointer;">Größe berechnen</p> <p>Paketgröße: {{$ctrl.parcel.size.cat}}'+
 			'</form>'+
 		'</div>'+ 
 	'</div>' ,
@@ -33,7 +33,7 @@ angular.
     		$http.post(url, parameter).then(function(data, status, headers, config) 
     		{
 	          ret_data = angular.fromJson(data);
-	          $parcel.size.category=ret_data['data']['size'];
+	          $parcel.size.cat=ret_data['data']['cat'];
     		});
     	}
       
