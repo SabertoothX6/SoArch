@@ -23,10 +23,10 @@ public class REST
   public Response message()
   {
 	Package parcel = new Package();
-	parcel.length = 1;
-	parcel.width = 2;
-	parcel.depth = 3;
-	parcel.cat = "S";
+	parcel.length = 0;
+	parcel.width = 0;
+	parcel.depth = 7;
+	parcel.cat = "penis";
 	Gson gs = new Gson();
     //return parcel.toString();
 	return Response.ok(gs.toJson(parcel, Package.class)).header("Access-Control-Allow-Origin", "*")
@@ -74,7 +74,8 @@ public class REST
 	  {
 	    System.out.println(e);
 	  } 
-	  return Response.ok(gs.toJson(parcel, Package.class)).header("Access-Control-Allow-Origin", "*")
+	  //System.out.println(parcel);
+	  return Response.status(200).entity(gs.toJson(parcel, Package.class)).header("Access-Control-Allow-Origin", "*")
 		      .header("Access-Control-Allow-Credentials", "true")
 		      .header("Access-Control-Allow-Headers",
 		         "origin, content-type, accept, authorization")
