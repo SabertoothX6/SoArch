@@ -74,7 +74,7 @@ public class REST
 	  {
 	    System.out.println(e);
 	  } 
-	  System.out.println(parcel);
+	  System.out.println("Send package: "+parcel);
 	  return Response.status(200).entity(gs.toJson(parcel, Package.class)).header("Access-Control-Allow-Origin", "*")
 		      .header("Access-Control-Allow-Credentials", "true")
 		      .header("Access-Control-Allow-Headers",
